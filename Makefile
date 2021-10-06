@@ -1,21 +1,15 @@
 APP ?= ldap-ad-proxy
 REPO ?= netaskd
 
-.PHONY:  build tag start stop push exec log
+.PHONY:  build start stop exec log
 
-all: build tag push
+all: build
 
 restart: stop start exec
 
 build:
 	@docker build -t ${APP} .
-
-tag:
-	@docker tag ${APP} ${REPO}/${APP}
 	
-
-push:
-	@docker push ${REPO}/${APP}
 
 start:
 	@docker run -d \
