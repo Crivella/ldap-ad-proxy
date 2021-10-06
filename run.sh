@@ -6,6 +6,12 @@
 # Set default suffix as basedn
 [[ -z "${META_SUFFIX}" ]] && export META_SUFFIX=${AD_BASEDN}
 
+# Set default rootdn
+[[ -z "${ROOTDN}" ]] && export ROOTDN=admin
+
+# Set default rootpw
+[[ -z "${ROOTPW}" ]] && export ROOTPW=secret
+
 # make config from env
 envsubst < /tmp/slapd.conf > slapd.conf
 
