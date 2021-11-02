@@ -20,5 +20,6 @@ mkdir -p slapd.test \
 && slaptest -d7 -f slapd.conf -F slapd.test -u \
 && rm -rf slapd.d \
 && mv slapd.test slapd.d \
-&& chown -R ldap.ldap slapd.d \
-&& slapd -h 'ldap:/// ldaps:///' -u ldap -d ${LOG_LEVEL}
+&& chown -R ldap.ldap slapd.d
+
+exec "$@"

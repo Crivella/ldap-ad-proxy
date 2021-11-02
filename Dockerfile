@@ -22,6 +22,6 @@ ADD run.sh /
 ADD slapd.conf /tmp/
 
 WORKDIR /etc/openldap
-CMD /run.sh
-ADD env.example Dockerfile /
+CMD slapd -h 'ldap:/// ldaps:///' -u ldap -d ${LOG_LEVEL}
 
+ENTRYPOINT ["/run.sh"]
