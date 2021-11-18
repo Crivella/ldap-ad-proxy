@@ -1,16 +1,14 @@
 #!/bin/ash
 
-# Set debug loglevel as default
-[[ -z "${LOG_LEVEL}" ]] && export LOG_LEVEL=7
+LOG_LEVEL=$(($LOG_LEVEL & 4093))
 
 # Set default suffix as basedn
 [[ -z "${META_SUFFIX}" ]] && export META_SUFFIX=${AD_BASEDN}
 
-# Set default rootdn
-[[ -z "${ROOTDN}" ]] && export ROOTDN=admin
-
-# Set default rootpw
-[[ -z "${ROOTPW}" ]] && export ROOTPW=secret
+if [[ ${ROOTPW} == "" ]]; then
+	echo "ERROR: Must set the ROOTPW variable..."
+	exit
+fi
 
 # make config from env
 envsubst < /tmp/slapd.conf > slapd.conf

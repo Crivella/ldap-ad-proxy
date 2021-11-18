@@ -17,6 +17,17 @@ RUN mkdir /var/run/openldap \
         && chown -R ldap:ldap /var/run/openldap \
         && echo "TLS_REQCERT     allow" >>/etc/openldap/ldap.conf
 
+ENV \
+	LOG_LEVEL=1 \
+	AD_SERVER_URI="" \
+	AD_BASEDN="" \
+	META_SUFFIX="" \
+	ROOTDN="admin" \
+	ROOTPW=""
+
+EXPOSE 389/tcp
+EXPOSE 636/tcp
+
 ADD schema /opt/docker/schema
 ADD run.sh /
 ADD slapd.conf /tmp/
